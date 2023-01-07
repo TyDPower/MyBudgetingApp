@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\MyBudgetingApp.Client.props" />
-</Project>
