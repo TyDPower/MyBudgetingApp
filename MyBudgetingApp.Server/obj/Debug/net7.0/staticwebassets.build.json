@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "uJX3toXni0723CUCMxiHcKJS7KHwrO8DDOWI/RKpMw4=",
+  "Source": "MyBudgetingApp.Server",
+  "BasePath": "_content/MyBudgetingApp.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "MyBudgetingApp.Server\\wwwroot",
+      "Source": "MyBudgetingApp.Server",
+      "ContentRoot": "D:\\Development\\C# Projects\\Blazor Projects\\MyBudgetingApp\\MyBudgetingApp.Server\\wwwroot\\",
+      "BasePath": "_content/MyBudgetingApp.Server",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Development\\C# Projects\\Blazor Projects\\MyBudgetingApp\\MyBudgetingApp.Server\\wwwroot\\css\\site.css",
+      "SourceId": "MyBudgetingApp.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Development\\C# Projects\\Blazor Projects\\MyBudgetingApp\\MyBudgetingApp.Server\\wwwroot\\",
+      "BasePath": "_content/MyBudgetingApp.Server",
+      "RelativePath": "css/site.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\site.css"
+    }
+  ]
+}
