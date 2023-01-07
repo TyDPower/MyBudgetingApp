@@ -16,6 +16,7 @@ namespace MyBudgetingApp.Server.Services.WalletService
         public async Task<IEnumerable<WalletDto>> GetWalletsAsync()
         {
             var walletList = await _walletRepository.GetWalletsAsync();
+            //Map to WalletDto and return data
             return walletList.Select(wallet => _walletListMapper.Map(wallet));
         }
 
