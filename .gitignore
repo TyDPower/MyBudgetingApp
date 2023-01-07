@@ -1,9 +1,3 @@
-MyBudgetingApp.Shared/obj/
-MyBudgetingApp.Server/obj/
-MyBudgetingApp.Client/obj/
-MyBudgetingApp.Shared/bin/
-MyBudgetingApp.Server/bin/
-MyBudgetingApp.Client/bin/
-MyBudgetingApp.Server/.vs/
-MyBudgetingApp.Shared/.vs/
-MyBudgetingApp.Client/.vs/
+*/obj/
+*/bin/
+*/.vs/
