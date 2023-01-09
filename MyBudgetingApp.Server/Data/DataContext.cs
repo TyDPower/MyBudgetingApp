@@ -13,6 +13,7 @@ namespace MyBudgetingApp.Server.Data
         }
 
         public DbSet<Wallet>? Wallet { get; set; }
+        public DbSet<Permission>? Permission { get; set; }
         //public DbSet<Transaction>? Txns { get; set; }
         //public DbSet<Users>? Users { get; set; }
         //public DbSet<EventLog>? EventLog { get; set; }

@@ -1,13 +1,19 @@
 global using MyBudgetingApp.Shared.Models;
 global using MyBudgetingApp.Server.Data;
 global using Microsoft.AspNetCore.Mvc;
-global using MyBudgetingApp.Server.Services.WalletService;
-global using MyBudgetingApp.Server.Data.Repositories.WalletRepository;
 global using Microsoft.EntityFrameworkCore;
 global using MyBudgetingApp.Server.Utilities.ErrorHandling;
 global using MyBudgetingApp.Server.Utilities.SuccessHandling;
 global using MyBudgetingApp.Shared.Dtos;
 global using MyBudgetingApp.Shared.Dtos.WalletDtos;
+
+//Services
+global using MyBudgetingApp.Server.Services.WalletService;
+global using MyBudgetingApp.Server.Services.PermissionService;
+
+//Repositories
+global using MyBudgetingApp.Server.Data.Repositories.WalletRepository;
+global using MyBudgetingApp.Server.Data.Repositories.PermissionRepository;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -27,9 +33,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IWalletService, WalletService>();
+builder.Services.AddScoped<IPermissionService, PermissionService>();
 
 //Repositories
 builder.Services.AddScoped<IWalletRepository, WalletRepository>();
+builder.Services.AddScoped<IPermissionRepository, PermissionRepository>();
 
 var app = builder.Build();
 

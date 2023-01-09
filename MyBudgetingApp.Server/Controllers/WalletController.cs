@@ -31,5 +31,20 @@ namespace MyBudgetingApp.Server.Controllers
             }
             
         }
+
+        [HttpGet("GetWalletByIdAsync/{id}")]
+        public async Task<ActionResult<WalletDto>> GetWalletByIdAsync(int id)
+        {
+            try
+            {
+                var walletDto = await _walletService.GetWalletByIdAsync(id);
+                return _successHandler.HandleSuccess(walletDto);
+            }
+            catch (Exception ex)
+            {
+                return _errorHandler.HandleError(ex);
+            }
+
+        }
     }
 }

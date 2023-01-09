@@ -13,15 +13,13 @@ namespace MyBudgetingApp.Server.Data.Repositories.WalletRepository
 
         public async Task<IEnumerable<Wallet>> GetWalletsAsync()
         {
-            try
-            {
-                return await _dataContext.Wallet.ToListAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new NotImplementedException();
-            }
-            
+            return await _dataContext.Wallet.ToListAsync() ?? throw new NotFoundException("No wallets found!");
+        }
+
+        public async Task<Wallet> GetWalletByIdAsync(int id)
+        {
+            return await _dataContext.Wallet.FirstOrDefaultAsync(w => w.ID == id)
+                ?? throw new NotFoundException($"No wallet with ID no. {id} found!");
         }
     }
 }

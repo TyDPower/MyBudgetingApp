@@ -5,5 +5,6 @@ namespace MyBudgetingApp.Server.Data.Repositories.WalletRepository
     public interface IWalletRepository
     {
         Task<IEnumerable<Wallet>> GetWalletsAsync();
+        Task<Wallet> GetWalletByIdAsync(int id);
     }
 }
