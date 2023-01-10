@@ -17,34 +17,78 @@ namespace MyBudgetingApp.Server.Controllers
             _successHandler = new SuccessHandling();
         }
 
-        [HttpGet("GetWalletsAsync")]
-        public async Task<ActionResult<IEnumerable<WalletDto>>> GetWalletsAsync()
+        [HttpGet("get/{id}")]
+        public async Task<ActionResult<WalletDto>> GetByIdAsync(Guid id)
         {
             try
             {
-                var walletDtoList = await _walletService.GetWalletsAsync();
-                return _successHandler.HandleSuccess(walletDtoList);
+                // Call the service to get the permission by id
+                var dto = await _walletService.GetByIdAsync(id);
+                // Return the permission as a PermissionDto object
+                return _successHandler.HandleSuccess(dto);
             }
             catch (Exception ex)
             {
                 return _errorHandler.HandleError(ex);
             }
-            
         }
 
-        [HttpGet("GetWalletByIdAsync/{id}")]
-        public async Task<ActionResult<WalletDto>> GetWalletByIdAsync(int id)
+        [HttpGet("user/{userId}")]
+        public async Task<ActionResult<IEnumerable<WalletDto>>> GetListByUserIdAsync(Guid userId)
         {
             try
             {
-                var walletDto = await _walletService.GetWalletByIdAsync(id);
-                return _successHandler.HandleSuccess(walletDto);
+                // Call the service to get the wallet by user id
+                var obj = await _walletService.GetListByUserIdAsync(userId);
+                // Return the wallet as a WalletDto object
+                return _successHandler.HandleSuccess(obj);
             }
             catch (Exception ex)
             {
                 return _errorHandler.HandleError(ex);
             }
+        }
 
+        [HttpPost("create")]
+        public async Task<IActionResult> AddAsync(WalletDto dto)
+        {
+            try
+            {
+                var id = await _walletService.AddAsync(dto);
+                return _successHandler.HandleSuccess($"Wallet with ID {id} has been successfully created!");
+            }
+            catch (Exception ex)
+            {
+                return _errorHandler.HandleError(ex);
+            }
+        }
+
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateAsync(WalletDto dto)
+        {
+            try
+            {
+                await _walletService.AddAsync(dto);
+                return _successHandler.HandleSuccess($"Wallet with ID {dto.ID} has been successfully updated!");
+            }
+            catch (Exception ex)
+            {
+                return _errorHandler.HandleError(ex);
+            }
+        }
+
+        [HttpDelete("delete")]
+        public IActionResult DeleteByIdAsync(Guid id)
+        {
+            try
+            {
+                _walletService.DeleteByIdAsync(id);
+                return _successHandler.HandleSuccess($"Wallet with ID {id} has been successfully deleted!");
+            }
+            catch (Exception ex)
+            {
+                return _errorHandler.HandleError(ex);
+            }
         }
     }
 }

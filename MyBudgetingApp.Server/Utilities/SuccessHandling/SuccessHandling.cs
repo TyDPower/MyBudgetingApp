@@ -13,6 +13,11 @@ namespace MyBudgetingApp.Server.Utilities.SuccessHandling
         {
             return new OkObjectResult(result);
         }
+
+        public ActionResult HandleSuccess(string message)
+        {
+            return new OkObjectResult(message);
+        }
     }
 
 }

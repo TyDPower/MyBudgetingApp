@@ -1,15 +1,13 @@
-﻿using MyBudgetingApp.Shared.Dtos.PermissionDtos;
-
-namespace MyBudgetingApp.Server.Services.PermissionService
+﻿namespace MyBudgetingApp.Server.Services.PermissionService
 {
     public interface IPermissionService
     {
-        Task<PermissionDto> GetPermissionByIdAsync(int id);
-        Task<IEnumerable<PermissionDto>> GetPermissionsByUserIdAsync(int userId);
-        Task<IEnumerable<PermissionDto>> GetPermissionsByWalletIdAsync(int walletId);
-        Task<IEnumerable<PermissionDto>> GetPermissionsByBudgetIdAsync(int budgetId);
-        void AddPermissionAsync(PermissionDto permissionDto);
-        void UpdatePermissionAsync(PermissionDto permissionDto);
-        void DeletePermissionByIdAsync(int id);
+        Task<PermissionDto> GetPermissionByIdAsync(Guid id);
+        Task<IEnumerable<PermissionDto>> GetPermissionsByUserIdAsync(Guid userId);
+        Task<IEnumerable<PermissionDto>> GetPermissionsByWalletIdAsync(Guid walletId);
+        Task<IEnumerable<PermissionDto>> GetPermissionsByBudgetIdAsync(Guid budgetId);
+        Task<Guid> AddPermissionAsync(PermissionDto permissionDto);
+        Task UpdatePermissionAsync(PermissionDto permissionDto);
+        Task DeletePermissionByIdAsync(Guid id);
     }
 }

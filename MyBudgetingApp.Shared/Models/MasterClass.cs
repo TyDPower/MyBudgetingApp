@@ -8,7 +8,7 @@ namespace MyBudgetingApp.Shared.Models
 {
     public class MasterClass
     {
-        public int ID { get; set; }
+        public Guid ID { get; set; } = Guid.NewGuid();
         public DateTime CreateDate { get; set; } = DateTime.Now;
     }
 }

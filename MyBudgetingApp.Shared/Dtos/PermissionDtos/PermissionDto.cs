@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace MyBudgetingApp.Shared.Dtos.PermissionDtos
 {
-    public class PermissionDto
+    public class PermissionDto : MasterDtoClass
     {
-        public int ID { get; set; }
-        public int FK_User_ID { get; set; }
-        public int FK_Wallet_ID { get; set; }
-        public int FK_Budget_ID { get; set; }
-        public bool Delete { get; set; }
-        public bool Share { get; set; }
-        public bool Modify { get; set; }
-        public bool View { get; set; }
+        public Guid FK_User_ID { get; set; }
+        public Guid FK_Wallet_ID { get; set; }
+        public Guid FK_Budget_ID { get; set; }
+        public bool Can_Delete { get; set; }
+        public bool Can_Share { get; set; }
+        public bool Can_Modify { get; set; }
+        public bool Can_View { get; set; }
+        public bool Is_Active { get; set; }
     }
 }

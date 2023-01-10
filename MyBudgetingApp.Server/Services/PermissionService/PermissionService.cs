@@ -1,6 +1,4 @@
-﻿using MyBudgetingApp.Shared.Dtos.PermissionDtos;
-
-namespace MyBudgetingApp.Server.Services.PermissionService
+﻿namespace MyBudgetingApp.Server.Services.PermissionService
 {
     public class PermissionService : IPermissionService
     {
@@ -15,43 +13,43 @@ namespace MyBudgetingApp.Server.Services.PermissionService
             _permissionMapper = new DtoMapper<PermissionDto, Permission>();
         }
 
-        public async Task<PermissionDto> GetPermissionByIdAsync(int id)
+        public async Task<PermissionDto> GetPermissionByIdAsync(Guid id)
         {
             var permission = await _permissionRepository.GetPermissionByIdAsync(id);
             return _permissionDtoMapper.Map(permission);
         }
 
-        public async Task<IEnumerable<PermissionDto>> GetPermissionsByUserIdAsync(int userId)
+        public async Task<IEnumerable<PermissionDto>> GetPermissionsByUserIdAsync(Guid userId)
         {
             var permissionList = await _permissionRepository.GetPermissionsByUserIdAsync(userId);
             return permissionList.Select(permission => _permissionDtoMapper.Map(permission));
         }
 
-        public async Task<IEnumerable<PermissionDto>> GetPermissionsByWalletIdAsync(int walletId)
+        public async Task<IEnumerable<PermissionDto>> GetPermissionsByWalletIdAsync(Guid walletId)
         {
             var permissionList = await _permissionRepository.GetPermissionsByWalletIdAsync(walletId);
             return permissionList.Select(permission => _permissionDtoMapper.Map(permission));
         }
 
-        public async Task<IEnumerable<PermissionDto>> GetPermissionsByBudgetIdAsync(int budgetId)
+        public async Task<IEnumerable<PermissionDto>> GetPermissionsByBudgetIdAsync(Guid budgetId)
         {
             var permissionList = await _permissionRepository.GetPermissionsByBudgetIdAsync(budgetId);
             return permissionList.Select(permission => _permissionDtoMapper.Map(permission));
         }
 
-        public async void AddPermissionAsync(PermissionDto permissionDto)
+        public async Task<Guid> AddPermissionAsync(PermissionDto permissionDto)
         {
             var permission = _permissionMapper.Map(permissionDto);
-            await _permissionRepository.AddPermissionAsync(permission);
+            return await _permissionRepository.AddPermissionAsync(permission);
         }
 
-        public async void UpdatePermissionAsync(PermissionDto permissionDto)
+        public async Task UpdatePermissionAsync(PermissionDto permissionDto)
         {
             var permission = _permissionMapper.Map(permissionDto);
             await _permissionRepository.UpdatePermissionAsync(permission);
         }
 
-        public async void DeletePermissionByIdAsync(int id)
+        public async Task DeletePermissionByIdAsync(Guid id)
         {
             // Delete the Permission from the database
             await _permissionRepository.DeletePermissionByIdAsync(id);

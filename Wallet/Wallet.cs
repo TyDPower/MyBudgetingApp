@@ -12,9 +12,8 @@ namespace MyBudgetingApp.Shared.Models
         public string Name { get; set; } = string.Empty;
         [Column(TypeName = "Decimal(18,2)")] public decimal Balance { get; set; }
         public string Description { get; set; } = string.Empty;
-        public bool Is_Shared { get; set; }
-        public bool Is_Deleted { get; set; }
-        public Guid Owner_FK_User_ID { get; set; } = Guid.Empty;
+        public bool IsShared { get; set; }
+        public bool IsDeleted { get; set; }
 
         public bool ValidateBalance(decimal transactionAmount, bool isDeposit, decimal currentBalance)
         {

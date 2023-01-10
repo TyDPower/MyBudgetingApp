@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyBudgetingApp.Shared.Dtos.PermissionDtos;
-using MyBudgetingApp.Shared.Dtos.WalletDtos;
 
 namespace MyBudgetingApp.Server.Controllers
 {
@@ -21,7 +20,7 @@ namespace MyBudgetingApp.Server.Controllers
         }
 
         [HttpGet("get/{id}")]
-        public async Task<ActionResult<PermissionDto>> GetPermissionByIdAsync(int id)
+        public async Task<ActionResult<PermissionDto>> GetPermissionByIdAsync(Guid id)
         {
             try
             {
@@ -37,14 +36,14 @@ namespace MyBudgetingApp.Server.Controllers
         }
 
         [HttpGet("user/{userId}")]
-        public async Task<ActionResult<IEnumerable<PermissionDto>>> GetPermissionsByUserIdAsync(int userId)
+        public async Task<ActionResult<IEnumerable<PermissionDto>>> GetPermissionsByUserIdAsync(Guid userId)
         {
             try
             {
                 // Call the service to get the permission by user id
                 var permission = await _permissionService.GetPermissionsByUserIdAsync(userId);
                 // Return the permission as a PermissionDto object
-                return Ok(permission);
+                return _successHandler.HandleSuccess(permission);
             }
             catch (Exception ex)
             {
@@ -53,14 +52,14 @@ namespace MyBudgetingApp.Server.Controllers
         }
 
         [HttpGet("wallet/{walletId}")]
-        public async Task<ActionResult<IEnumerable<PermissionDto>>> GetPermissionsByWalletIdAsync(int walletId)
+        public async Task<ActionResult<IEnumerable<PermissionDto>>> GetPermissionsByWalletIdAsync(Guid walletId)
         {
             try
             {
                 // Call the service to get the permission by wallet id
                 var permission = await _permissionService.GetPermissionsByWalletIdAsync(walletId);
                 // Return the permission as a PermissionDto object
-                return Ok(permission);
+                return _successHandler.HandleSuccess(permission);
             }
             catch (Exception ex)
             {
@@ -69,14 +68,14 @@ namespace MyBudgetingApp.Server.Controllers
         }
 
         [HttpGet("budget/{budgetId}")]
-        public async Task<ActionResult<IEnumerable<PermissionDto>>> GetPermissionsByBudgetIdAsync(int budgetId)
+        public async Task<ActionResult<IEnumerable<PermissionDto>>> GetPermissionsByBudgetIdAsync(Guid budgetId)
         {
             try
             {
                 // Call the service to get the permission by budget id
                 var permission = await _permissionService.GetPermissionsByBudgetIdAsync(budgetId);
                 // Return the permission as a PermissionDto object
-                return Ok(permission);
+                return _successHandler.HandleSuccess(permission);
             }
             catch (Exception ex)
             {
@@ -85,30 +84,31 @@ namespace MyBudgetingApp.Server.Controllers
         }
 
         [HttpPost("create")]
-        public ActionResult AddPermissionAsync(PermissionDto permissionDto)
+        public async Task<IActionResult> AddPermissionAsync(PermissionDto permissionDto)
         {
             try
             {
                 // Call the service to get the permission by budget id
-                _permissionService.AddPermissionAsync(permissionDto);
+                var id = await _permissionService.AddPermissionAsync(permissionDto);
                 // Return the permission as a PermissionDto object
-                return Ok();
+                return _successHandler.HandleSuccess($"Permission with ID {id} has been successfully created!");
             }
             catch (Exception ex)
             {
                 return _errorHandler.HandleError(ex);
             }
+
         }
 
         [HttpPut("update")]
-        public ActionResult UpdatePermissionAsync(PermissionDto permissionDto)
+        public async Task<IActionResult> UpdatePermissionAsync(PermissionDto permissionDto)
         {
             try
             {
                 // Call the service to get the permission by budget id
-                _permissionService.UpdatePermissionAsync(permissionDto);
+                await _permissionService.UpdatePermissionAsync(permissionDto);
                 // Return the permission as a PermissionDto object
-                return Ok();
+                return _successHandler.HandleSuccess($"Permission with ID {permissionDto.ID} has been successfully updated!");
             }
             catch (Exception ex)
             {
@@ -117,12 +117,12 @@ namespace MyBudgetingApp.Server.Controllers
         }
 
         [HttpDelete("delete")]
-        public ActionResult DeletePermissionByIdAsync(int id)
+        public IActionResult DeletePermissionByIdAsync(Guid id)
         {
             try
             {
                 _permissionService.DeletePermissionByIdAsync(id);
-                return Ok();
+                return _successHandler.HandleSuccess($"Permission with ID {id} has been successfully deleted!");
             }
             catch (Exception ex)
             {

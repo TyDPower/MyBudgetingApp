@@ -6,6 +6,7 @@ global using MyBudgetingApp.Server.Utilities.ErrorHandling;
 global using MyBudgetingApp.Server.Utilities.SuccessHandling;
 global using MyBudgetingApp.Shared.Dtos;
 global using MyBudgetingApp.Shared.Dtos.WalletDtos;
+global using MyBudgetingApp.Shared.Dtos.PermissionDtos;
 
 //Services
 global using MyBudgetingApp.Server.Services.WalletService;
